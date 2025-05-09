@@ -9,9 +9,9 @@ use App\Transformers\ProfileTransformer;
 
 class UserController extends Controller
 {
-    public function show(ProfileSummaryService $summaryService, ProfileService $profileService, ProfileTransformer $transformer, int $userId)
+    public function show(ProfileSummaryService $summaryService, ProfileService $profileService, int $userId)
     {
-        $profile = $profileService->getProfile($transformer, $userId);
+        $profile = $profileService->getProfile($userId);
         $summary = $summaryService->generate($userId, $profile);
 
         return view('users.show', [

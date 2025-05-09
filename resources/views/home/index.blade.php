@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center text-gray-900 dark:text-gray-100">
 
-<div class="w-full max-w-lg mx-auto px-6 py-12 bg-white dark:bg-gray-800 shadow-2xl rounded-3xl">
+<div class="w-full max-w-lg mx-auto px-6 py-12">
     {{-- Header --}}
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white">🎟️ Event Horizon</h1>
@@ -33,7 +33,7 @@
             <select id="user_id" name="user_id" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#46c3be] focus:border-[#46c3be] dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm">
                 <option value="">-- Choose a user --</option>
-                <option value="7803665">Chris S – Drum'n'Base events in Preston</option>
+                <option value="7803665">Chris S – Metal and experimental events in Manchester</option>
                 <option value="1887026">Jack B – Indie events in Peterborough</option>
                 <option value="7743652">Lawrence A – Alternative events in Birmingham</option>
                 <option value="4340627">Scott C – Metal events in Preston</option>

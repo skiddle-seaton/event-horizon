@@ -24,9 +24,10 @@ class ProfileTransformer
 
         return $artistScores
             ->mapWithKeys(function ($score, $artistId) use ($artists) {
+                $id = $artists[$artistId]->artistID ?? null;
                 $name = $artists[$artistId]->name ?? 'Unknown Artist';
 
-                return [$name => $score];
+                return [$name => ['id' => $id, 'score' => $score]];
             })
             ->sortDesc();
     }
@@ -55,9 +56,10 @@ class ProfileTransformer
 
         return $categoryScores
             ->mapWithKeys(function (int $score, string $category) use ($categories): array {
+                $id = $categories[$category]->EventCode ?? null;
                 $description = $categories[$category]->EventCodeDesc ?? 'Unknown Event Code';
 
-                return [$description => $score];
+                return [$description => ['id' => $id, 'score' => $score]];
             })
             ->sortDesc();
     }
@@ -75,9 +77,10 @@ class ProfileTransformer
 
         return $genreScores
             ->mapWithKeys(function (int $score, string $genreId) use ($genres): array {
+                $id = $genres[$genreId]->GenreID ?? null;
                 $name = $genres[$genreId]->GenreName ?? 'Unknown Genre';
 
-                return [$name => $score];
+                return [$name => ['id' => $id, 'score' => $score]];
             })
             ->sortDesc();
     }

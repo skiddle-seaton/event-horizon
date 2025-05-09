@@ -6,13 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @param int GenreId
- * @param string GenreName
+ * @param float $latitude
+ * @param float $longitude
  */
-class Genre extends Model
+class Postcode extends Model
 {
-    public $table = 'Genres';
-    public $primaryKey = 'GenreID';
+    public $table = 'postcodes';
+    public $primaryKey = '';
 
     public $timestamps = false;
 

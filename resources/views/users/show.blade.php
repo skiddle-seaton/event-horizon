@@ -8,9 +8,9 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center text-gray-900 dark:text-gray-100">
 
-<div class="w-full max-w-3xl mx-auto px-6 py-12 bg-white dark:bg-gray-800 shadow-2xl rounded-3xl">
+<div class="w-full max-w-3xl mx-auto px-6 py-12">
     {{-- Page Header --}}
-    <div class="mb-8">
+    <div class="mb-8 text-center">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Customer Profile</h2>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Generated from recent purchase history</p>
     </div>
@@ -38,7 +38,7 @@
                 <span>📍</span><span>Top Locations</span>
             </h3>
             <ul class="space-y-1 text-gray-800 dark:text-gray-200 text-sm">
-                @forelse($profile['locations']->take(3)->keys() as $location)
+                @forelse($profile->locations->take(3)->keys() as $location)
                     <li>{{ $location }}</li>
                 @empty
                     <li class="italic text-gray-400">No location data</li>
@@ -52,7 +52,7 @@
                 <span>🎭</span><span>Event Types</span>
             </h3>
             <ul class="space-y-1 text-gray-800 dark:text-gray-200 text-sm">
-                @forelse($profile['categories']->take(3)->keys() as $category)
+                @forelse($profile->categories->take(3)->keys() as $category)
                     <li>{{ $category }}</li>
                 @empty
                     <li class="italic text-gray-400">No event type data</li>
@@ -66,7 +66,7 @@
                 <span>🎶</span><span>Genres</span>
             </h3>
             <ul class="space-y-1 text-gray-800 dark:text-gray-200 text-sm">
-                @forelse($profile['genres']->take(3)->keys() as $genre)
+                @forelse($profile->genres->take(3)->keys() as $genre)
                     <li>{{ $genre }}</li>
                 @empty
                     <li class="italic text-gray-400">No genre data</li>
@@ -79,19 +79,21 @@
             <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase flex items-center space-x-2 mb-3">
                 <span>👤</span><span>Top Artists</span>
             </h3>
-            <ul class="space-y-1 text-gray-800 dark:text-gray-200 text-sm">
-                @forelse($profile['artists']->take(5)->keys() as $artist)
-                    <li>{{ Str::title($artist) }}</li>
-                @empty
-                    <li class="italic text-gray-400">No artist data</li>
-                @endforelse
-            </ul>
+            @if($profile->artists->isNotEmpty())
+                <ul class="grid grid-cols-2 gap-y-1 gap-x-4 text-gray-800 dark:text-gray-200 text-sm">
+                    @foreach($profile->artists->take(10)->keys() as $artist)
+                        <li>{{ Str::title($artist) }}</li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="italic text-gray-400 text-sm">No artist data</p>
+            @endif
         </div>
     </div>
 
     {{-- CTAs --}}
     <div class="flex justify-between items-center gap-4">
-        <a href="{{ route('recommendations.index', ['userId' => $userId]) }}"
+        <a href="{{ route('user-recommendations.show', ['userId' => $userId]) }}"
            class="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-[#46c3be] hover:scale-105 transition-all duration-200 shadow-md">
             ✨ Find Event Recommendations
         </a>
